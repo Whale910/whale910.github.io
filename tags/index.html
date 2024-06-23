@@ -69,7 +69,8 @@
 </ul>
 <h2 id="Example-Tags"><a href="#Example-Tags" class="headerlink" title="Example Tags"></a>Example Tags</h2><ul>
 <li><a href="/about/">Hexo</a></li>
-<li><a href="/2024/06/23/Hello-World/" title="Hello World">你好</a></li>
+<li><a href="/2024/06/23/Pinsker-Inequality/" title="Pinsker Inequality">你好</a>
+</li>
 </ul>
 <p>Feel free to explore and enjoy our tagged content!</p>
 
@@ -106,5 +107,20 @@
 var sp = new Pager('data-pager-shell')
 
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

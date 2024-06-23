@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Hello World | Whale</title>
+  <title>Pinsker Inequality | Whale</title>
   
   
   
@@ -57,11 +57,23 @@
             <div>
   <article class='ContentView'>
     <header class='PageTitle'>
-        <h1>Hello World</h1>
+        <h1>Pinsker Inequality</h1>
     </header>
 
     <section>
-      
+      <p>最近在做 Mirror Descent 相关的一个项目的收敛性分析，需要用到 Pinsker 不等式，这里简单记录一下它的证明。</p>
+<p>(Pinsker’s inequality)设 $P$ 和 $Q$ 是两个概率分布，那么</p>
+<script type="math/tex; mode=display">D_{KL}(P||Q) \ge \frac{1}{2}||P-Q||_1^2 \tag{1}</script><p>由 Pinsker 不等式可以得到负熵函数关于$1$-范数是强凸的</p>
+<p>下面先证明 Pinsker 不等式，首先我们给出 KL 散度的链式法则：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+D_{KL}(P(X, Y)||Q(X, Y)) &= \sum_{x,y} p(x, y) \log \frac{p(x, y)}{q(x, y)} \\\\
+&= \sum_{x,y} p(x)p(y|x) \log \frac{p(x)p(y|x)}{q(x)q(y|x)} \\\\
+&= \sum_{x} p(x) \log \frac{p(x)}{q(x)} \sum_{y} p(y|x) + \sum_{x} p(x) \sum_{y} p(y|x) \log \frac{p(y|x)}{q(y|x)} \\\\
+&= D_{KL}(P(X)||Q(X)) + \sum_{x} p(x) D_{KL}(P||Q|X=x) \\\\
+&= D_{KL}(P(X)||Q(X)) + D_{KL}(P||Q|X)
+\end{aligned}
+\tag{2}</script><p>特别地，若$P(X,Y)=P_1(X)P_2(Y),Q(X,Y)=Q_1(X)Q_2(Y)$，那么有</p>
+<script type="math/tex; mode=display">D_{KL}(P(X, Y)||Q(X, Y)) = D_{KL}(P_1(X)||Q_1(X)) + D_{KL}(P_2(X)||Q_2(X))</script>
 
       
 
@@ -70,10 +82,19 @@
       <section class='ArticleMeta'>
           <div>
             发布于&nbsp;
-            <time datetime="2024-06-22T17:57:48.000Z" itemprop="datePublished">
+            <time datetime="2024-06-23T15:12:32.000Z" itemprop="datePublished">
               2024-06-23
             </time>
           </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/%E4%BC%98%E5%8C%96/">优化</a> }
+  </li>
+
+
+            </div>
           
       </section>
     
@@ -106,5 +127,20 @@
 var sp = new Pager('data-pager-shell')
 
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

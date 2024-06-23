@@ -62,71 +62,19 @@
     <header class="title">
       
         <h1>
-          <a href="/2024/06/23/Hello-World/">Hello World</a>
+          <a href="/2024/06/23/Pinsker-Inequality/">Pinsker Inequality</a>
         </h1>
       
       <div class='ListMeta'>
-  <time datetime="2024-06-22T17:57:48.000Z" itemprop="datePublished">
+  <time datetime="2024-06-23T15:12:32.000Z" itemprop="datePublished">
     2024-06-23
-  </time>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2024/06/23/test2/">test2</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2024-06-22T17:46:38.000Z" itemprop="datePublished">
-    2024-06-23
-  </time>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2024/06/22/test/">test</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2024-06-22T06:59:50.000Z" itemprop="datePublished">
-    2024-06-22
   </time>
   
   | 
   <ul>
     
   <li class="meta-text">
-  { <a href="/tags/math/">math</a> }
+  { <a href="/tags/%E4%BC%98%E5%8C%96/">优化</a> }
   </li>
 
 
@@ -138,7 +86,19 @@
     </header>
     <div>
       
-        
+        <p>最近在做 Mirror Descent 相关的一个项目的收敛性分析，需要用到 Pinsker 不等式，这里简单记录一下它的证明。</p>
+<p>(Pinsker’s inequality)设 $P$ 和 $Q$ 是两个概率分布，那么</p>
+<script type="math/tex; mode=display">D_{KL}(P||Q) \ge \frac{1}{2}||P-Q||_1^2 \tag{1}</script><p>由 Pinsker 不等式可以得到负熵函数关于$1$-范数是强凸的</p>
+<p>下面先证明 Pinsker 不等式，首先我们给出 KL 散度的链式法则：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+D_{KL}(P(X, Y)||Q(X, Y)) &= \sum_{x,y} p(x, y) \log \frac{p(x, y)}{q(x, y)} \\\\
+&= \sum_{x,y} p(x)p(y|x) \log \frac{p(x)p(y|x)}{q(x)q(y|x)} \\\\
+&= \sum_{x} p(x) \log \frac{p(x)}{q(x)} \sum_{y} p(y|x) + \sum_{x} p(x) \sum_{y} p(y|x) \log \frac{p(y|x)}{q(y|x)} \\\\
+&= D_{KL}(P(X)||Q(X)) + \sum_{x} p(x) D_{KL}(P||Q|X=x) \\\\
+&= D_{KL}(P(X)||Q(X)) + D_{KL}(P||Q|X)
+\end{aligned}
+\tag{2}</script><p>特别地，若$P(X,Y)=P_1(X)P_2(Y),Q(X,Y)=Q_1(X)Q_2(Y)$，那么有</p>
+<script type="math/tex; mode=display">D_{KL}(P(X, Y)||Q(X, Y)) = D_{KL}(P_1(X)||Q_1(X)) + D_{KL}(P_2(X)||Q_2(X))</script>
       
     </div>
 </article>
@@ -171,5 +131,20 @@
 var sp = new Pager('data-pager-shell')
 
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
